@@ -28,6 +28,12 @@ module Pod
       c99ext_identifier(label)
     end
 
+    # @return [Podfile]
+    #
+    def podfile
+      @podfile ||= target_definition.podfile
+    end
+
     # @return [Pathname] the folder where the client is stored used for
     #         computing the relative paths. If integrating it should be the
     #         folder where the user project is stored, otherwise it should
