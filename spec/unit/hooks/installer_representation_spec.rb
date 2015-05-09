@@ -50,7 +50,7 @@ module Pod
 
       it 'returns the pods representation by library representation' do
         pods_by_lib = @rep.pods_by_lib
-        target_definition = @installer.aggregate_targets.first.pod_targets.first.target_definition
+        target_definition = @installer.aggregate_targets.first.pod_targets.first.target_definitions.first
         pods_by_lib[target_definition].map(&:name).should == ['JSONKit']
       end
     end

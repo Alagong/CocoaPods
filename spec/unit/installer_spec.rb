@@ -476,7 +476,7 @@ module Pod
           spec = fixture_spec('banana-lib/BananaLib.podspec')
           target_definition = Podfile::TargetDefinition.new(:default, nil)
           target_definition.store_pod('BananaLib')
-          pod_target = PodTarget.new([spec], target_definition, config.sandbox)
+          pod_target = PodTarget.new([spec], [target_definition], config.sandbox)
           @installer.stubs(:aggregate_targets).returns([])
           @installer.stubs(:pod_targets).returns([pod_target])
           Installer::PodTargetInstaller.any_instance.expects(:install!)
@@ -486,7 +486,7 @@ module Pod
         it 'skips empty pod targets' do
           spec = fixture_spec('banana-lib/BananaLib.podspec')
           target_definition = Podfile::TargetDefinition.new(:default, nil)
-          pod_target = PodTarget.new([spec], target_definition, config.sandbox)
+          pod_target = PodTarget.new([spec], [target_definition], config.sandbox)
           @installer.stubs(:aggregate_targets).returns([])
           @installer.stubs(:pod_targets).returns([pod_target])
           Installer::PodTargetInstaller.any_instance.expects(:install!).never
@@ -521,7 +521,7 @@ module Pod
           spec = fixture_spec('banana-lib/BananaLib.podspec')
 
           target_definition = Podfile::TargetDefinition.new(:default, @installer.podfile)
-          @pod_target = PodTarget.new([spec], target_definition, config.sandbox)
+          @pod_target = PodTarget.new([spec], [target_definition], config.sandbox)
           @target = AggregateTarget.new(target_definition, config.sandbox)
 
           @mock_target = mock('PodNativeTarget')
