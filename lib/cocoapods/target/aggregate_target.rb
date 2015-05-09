@@ -110,7 +110,7 @@ module Pod
       pod_targets.map(&:specs).flatten
     end
 
-    # @return [Hash{Symbol => Array<Specification>}] The pod targets for each
+    # @return [Hash{Symbol => Array<Specification>}] The pod specs for each
     #         build configuration.
     #
     def specs_by_build_configuration
@@ -137,6 +137,14 @@ module Pod
     #-------------------------------------------------------------------------#
 
     # @!group Support files
+
+    # @return [Pathname] the absolute path of the header file which contains
+    #         the information about the installed pods.
+    #
+    def target_environment_header_path
+      name = target_definition.label
+      sandbox.target_support_files_dir(name) + "#{name}-environment.h"
+    end
 
     # @return [Pathname] The absolute path of acknowledgements file.
     #

@@ -120,7 +120,7 @@ module Pod
 
       it 'returns the absolute path of the target header file' do
         @pod_target.target_environment_header_path.to_s.should.include?(
-          'Pods/Target Support Files/Pods/Pods-environment.h',
+          'Pods/Target Support Files/BananaLib/BananaLib-environment.h',
         )
       end
 

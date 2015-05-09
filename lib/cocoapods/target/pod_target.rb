@@ -114,6 +114,13 @@ module Pod
       root_spec.name
     end
 
+    # @return [Pathname] the absolute path of the header file which
+    #         contains the information about the installed pods.
+    #
+    def target_environment_header_path
+      support_files_dir + "#{pod_name}-environment.h"
+    end
+
     # @param  [String] bundle_name
     #         The name of the bundle product, which is given by the +spec+.
     #
@@ -121,6 +128,13 @@ module Pod
     #
     def resources_bundle_target_label(bundle_name)
       "#{label}-#{bundle_name}"
+    end
+
+    # @return [Hash{Symbol => Array<Specification>}] The pod specs for each
+    #         build configuration.
+    #
+    def specs_by_build_configuration
+      aggregate_targets.flat_map(&:specs_by_build_configuration)
     end
 
     # @return [Array<String>] The names of the Pods on which this target

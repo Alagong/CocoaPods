@@ -165,6 +165,16 @@ module Pod
         end
       end
 
+      # Generates a header which allows to inspect at compile time the installed
+      # pods and the installed specifications of a pod.
+      #
+      def create_target_environment_header
+        path = target.target_environment_header_path
+        generator = Generator::TargetEnvironmentHeader.new(target.specs_by_build_configuration)
+        generator.save_as(path)
+        add_file_to_support_group(path)
+      end
+
       # Creates a prefix header file which imports `UIKit` or `Cocoa` according
       # to the platform of the target. This file also include any prefix header
       # content reported by the specification of the pods.

@@ -195,7 +195,7 @@ module Pod
           #import <UIKit/UIKit.h>
           #endif
 
-          #import "Pods-environment.h"
+          #import "BananaLib-environment.h"
           #import "BlocksKit.h"
           #import <BananaTree/BananaTree.h>
         EOS
