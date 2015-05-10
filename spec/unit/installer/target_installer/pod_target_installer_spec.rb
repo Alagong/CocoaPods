@@ -227,7 +227,7 @@ module Pod
         end
 
         it 'flags should not be added to dtrace files' do
-          @installer.target.target_definition.stubs(:inhibits_warnings_for_pod?).returns(true)
+          @installer.target.target_definitions.first.stubs(:inhibits_warnings_for_pod?).returns(true)
           @installer.install!
 
           dtrace_files = @installer.target.native_target.source_build_phase.files.select do |sf|
@@ -239,7 +239,7 @@ module Pod
         end
 
         it 'adds -w per pod if target definition inhibits warnings for that pod' do
-          @installer.target.target_definition.stubs(:inhibits_warnings_for_pod?).returns(true)
+          @installer.target.target_definitions.first.stubs(:inhibits_warnings_for_pod?).returns(true)
           flags = @installer.send(:compiler_flags_for_consumer, @spec.consumer(:ios), true)
 
           flags.should.include?('-w')
@@ -251,7 +251,7 @@ module Pod
         end
 
         it 'adds -Xanalyzer -analyzer-disable-checker per pod' do
-          @installer.target.target_definition.stubs(:inhibits_warnings_for_pod?).returns(true)
+          @installer.target.target_definitions.first.stubs(:inhibits_warnings_for_pod?).returns(true)
           flags = @installer.send(:compiler_flags_for_consumer, @spec.consumer(:ios), true)
 
           flags.should.include?('-Xanalyzer -analyzer-disable-checker')
